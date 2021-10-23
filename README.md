@@ -11,7 +11,7 @@ Cuando se está acostumbrado a utilizar el teclado en la configuración estadoun
 - ¿ ¡
 
 ## Forma de uso
--Para acentuar las vocales minúculas se presiona **R-Shift** + **Vocal**.
+-Para acentuar las vocales minúsculas se presiona **R-Shift** + **Vocal**.
 
 -Para acentuar las vocales mayúsculas se presiona **R-Shift** + **L-Shift** + **Vocal**.
 
