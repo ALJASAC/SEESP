@@ -15,6 +15,6 @@ Cuando se está acostumbrado a utilizar el teclado en la configuración estadoun
 
 -Para acentuar las vocales mayúsculas se presiona **R-Shift** + **L-Shift** + **Vocal**.
 
--Para colocar el símbolo **¿** se presionar **L-Shift** + **tecla con el símbolo ?**.
+-Para colocar el símbolo **¿** se presiona **L-Shift** + **tecla con el símbolo ?**.
 
-En este lanzamiento aún no se puede colocar el símbolo **¡** mediante una combinación de teclas, sin embargo, se está trabajando en esto.
+-Para colocar el símbolo **¡** se presiona **L-Shift** + **tecla con símbolo !**.
