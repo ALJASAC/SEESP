@@ -13,6 +13,7 @@
 
 // Símbolos de tipo "Virtual-Key Codes"" de Microsoft Windows.
 #define inter VK_OEM_2 // El símbolo ?
+#define excla 0x31 // La tecla en donde viene el ! ( o el 1 ).
 
 // Letras minúsculas con acento en UNICODE.
 #define aConAcentoUnicode 0x00E1
@@ -34,6 +35,7 @@
 
 //Símbolos Unicode
 #define interInicialUnicode 0x00BF // Signo de interrogación incial ¿
+#define exclaInicialUnicode 0x00A1 // Signo de exclamación inicial ¡
 
 HWND ventana;
 
@@ -47,6 +49,7 @@ int main(void)
     short keyState5; // Para la ú
     short keyState7; // Para la ñ
     short keyState8; // Para el ¿
+    short keyState9; // Para el ¡
     
     short keyState6; // Para el shift izquierdo
     
@@ -60,6 +63,7 @@ int main(void)
     bool isDown5; // Para la ú
     bool isDown7; // Para la ñ
     bool isDown8; // Para el ¿
+    bool isDown9; // Para el ¡
         
     bool isDown6; // Para el shift izquierdo
     
@@ -76,6 +80,7 @@ int main(void)
         keyState5 = GetKeyState(u);        
         keyState7 = GetKeyState(n);
         keyState8 = GetKeyState(inter);
+        keyState9 = GetKeyState(excla);
         
         keyState6 = GetKeyState(shiftIzquierdo);
         
@@ -91,6 +96,7 @@ int main(void)
         isDown5 = keyState5 & 0x8000;
         isDown7 = keyState7 & 0x8000;
         isDown8 = keyState8 & 0x8000;
+        isDown9 = keyState9 & 0x8000;
                 
         isDown6 = keyState6 & 0x8000; // Para el shiftIzquierdo
         
@@ -308,8 +314,8 @@ int main(void)
         }
         else if(isDown6) // Para el shiftIzquierdo
         {
-            if(isDown8) // Para la letra ¿
-            {
+           if(isDown8) // Para la letra ¿
+           {
                Sleep(100); // Para solo poner una vez lo de abajo.
                ///printf("Se ha presionado la letra a.\n");
            
@@ -337,6 +343,41 @@ int main(void)
 
                // up
                kb.wScan = interInicialUnicode;
+               kb.dwFlags = KEYEVENTF_UNICODE|KEYEVENTF_KEYUP;
+               Input.type = INPUT_KEYBOARD;
+	              Input.ki = kb;
+               SendInput(1,&Input,sizeof(Input));
+           
+           }
+           if(isDown9) // Para la letra ¡
+           {
+               Sleep(100); // Para solo poner una vez lo de abajo.
+               ///printf("Se ha presionado la letra a.\n");
+           
+               // Simulate a key press
+               keybd_event( VK_BACK,
+                           0x45,
+                           KEYEVENTF_EXTENDEDKEY | 0,
+                           0 );
+
+               // Simulate a key release
+               keybd_event( VK_BACK,
+                           0x45,
+                           KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP,
+                           0);
+           
+               KEYBDINPUT kb = {0};
+               INPUT Input = {0};
+
+               // down
+               kb.wScan = exclaInicialUnicode;
+               kb.dwFlags = KEYEVENTF_UNICODE;
+               Input.type = INPUT_KEYBOARD;
+               Input.ki = kb;
+               SendInput(1,&Input,sizeof(Input));
+
+               // up
+               kb.wScan = exclaInicialUnicode;
                kb.dwFlags = KEYEVENTF_UNICODE|KEYEVENTF_KEYUP;
                Input.type = INPUT_KEYBOARD;
 	              Input.ki = kb;
@@ -551,23 +592,5 @@ int main(void)
                }
            }
         }
-        
-        ///if(isDown3)
-        ///{
-        ///   Sleep(100); // Para solo poner una vez lo de abajo.
-        ///   ShowWindow(ventana, SW_SHOW);
-        ///}
-    
-            /*// Simulate a key press
-            keybd_event( 0x41,
-                        0x45,
-                        KEYEVENTF_EXTENDEDKEY | 0,
-                        0 );
-
-            // Simulate a key release
-            keybd_event( VK_NUMLOCK,
-                        0x45,
-                        KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP,
-                        0);*/
     }
 }
