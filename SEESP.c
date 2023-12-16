@@ -71,7 +71,7 @@ int main(void)
     ShowWindow(ventana, SW_HIDE);
     while(1)
     {
-        Sleep(50);
+        Sleep(20);
         // Verificacion de parámetros.
         keyState0 = GetKeyState(shiftDerecho);
         keyState1 = GetKeyState(a);
